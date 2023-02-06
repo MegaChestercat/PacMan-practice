@@ -33,6 +33,7 @@ namespace PacMan
         Rect pacmanHitBox;
         Rect pacMan;
         Rect redGhost;
+        
 
         int GhostSpeed = 10;
         int ghostMoveStep = 130;
@@ -80,9 +81,10 @@ namespace PacMan
             else if (c == 'c')
                 g.FillRectangle(brushC, x * 10, y * 10, 10, 10);
             else if (c == 'p')
-                
-                g.FillRectangle(brushP, x * 10, y * 10, 10, 10);
+            {
+                g.DrawImage(Resource1.pacman, x * 10, y * 10);
                 pacMan = new Rect(x * 10, y * 10, 10, 10);
+            }
             else if (c == 'r')
                 g.FillRectangle(brushR, x * 10, y * 10, 10, 10);
             else
@@ -114,6 +116,7 @@ namespace PacMan
             timer1.Enabled = true;
             currentGhostStep = ghostMoveStep;
 
+           
            
         }
 
