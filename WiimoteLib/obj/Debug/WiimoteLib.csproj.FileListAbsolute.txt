@@ -1,0 +1,14 @@
+D:\mario\Desktop\WiimoteLib-master\WiimoteCS\WiimoteLib\bin\Debug\WiimoteLib.XML
+D:\mario\Desktop\WiimoteLib-master\WiimoteCS\WiimoteLib\bin\Debug\WiimoteLib.dll
+D:\mario\Desktop\WiimoteLib-master\WiimoteCS\WiimoteLib\bin\Debug\WiimoteLib.pdb
+D:\mario\Desktop\WiimoteLib-master\WiimoteCS\WiimoteLib\obj\Debug\WiimoteLib.csproj.AssemblyReference.cache
+D:\mario\Desktop\WiimoteLib-master\WiimoteCS\WiimoteLib\obj\Debug\WiimoteLib.csproj.CoreCompileInputs.cache
+D:\mario\Desktop\WiimoteLib-master\WiimoteCS\WiimoteLib\obj\Debug\WiimoteLib.dll
+D:\mario\Desktop\WiimoteLib-master\WiimoteCS\WiimoteLib\obj\Debug\WiimoteLib.pdb
+D:\Visual Studio projects\PacMan\WiimoteLib\bin\Debug\WiimoteLib.XML
+D:\Visual Studio projects\PacMan\WiimoteLib\bin\Debug\WiimoteLib.dll
+D:\Visual Studio projects\PacMan\WiimoteLib\bin\Debug\WiimoteLib.pdb
+D:\Visual Studio projects\PacMan\WiimoteLib\obj\Debug\WiimoteLib.csproj.AssemblyReference.cache
+D:\Visual Studio projects\PacMan\WiimoteLib\obj\Debug\WiimoteLib.csproj.CoreCompileInputs.cache
+D:\Visual Studio projects\PacMan\WiimoteLib\obj\Debug\WiimoteLib.dll
+D:\Visual Studio projects\PacMan\WiimoteLib\obj\Debug\WiimoteLib.pdb
