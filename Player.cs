@@ -9,13 +9,21 @@ namespace PacMan
     public class Player
     {
 
-        public PointF Pos, LookAt;//main lookAt
-        public List<PointF> looks;
-
-        public Player(PointF pos, PointF lookAt)
+        public PointF Rotation(PointF a, PointF b, double angle)
         {
-            this.Pos = pos;
-            this.LookAt = lookAt;
+            b.X -= a.X;
+            b.Y -= a.Y;
+
+            PointF c = new PointF();
+            angle = angle / 57.2958f;
+
+            c.X = (float)((b.X * Math.Cos(angle)) - (b.Y * Math.Sin(angle)));
+            c.Y = (float)((b.X * Math.Sin(angle)) + (b.Y * Math.Cos(angle)));
+
+            c.X += a.X;
+            c.Y += a.Y;
+
+            return c;
         }
     }
 }
