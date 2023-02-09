@@ -45,7 +45,7 @@
             this.Score_Label.AutoSize = true;
             this.Score_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Score_Label.ForeColor = System.Drawing.Color.White;
-            this.Score_Label.Location = new System.Drawing.Point(673, 23);
+            this.Score_Label.Location = new System.Drawing.Point(387, 37);
             this.Score_Label.Name = "Score_Label";
             this.Score_Label.Size = new System.Drawing.Size(107, 36);
             this.Score_Label.TabIndex = 0;
@@ -53,10 +53,10 @@
             // 
             // PCT_CANVAS
             // 
-            this.PCT_CANVAS.Location = new System.Drawing.Point(17, 107);
+            this.PCT_CANVAS.Location = new System.Drawing.Point(44, 104);
             this.PCT_CANVAS.Margin = new System.Windows.Forms.Padding(4);
             this.PCT_CANVAS.Name = "PCT_CANVAS";
-            this.PCT_CANVAS.Size = new System.Drawing.Size(1600, 738);
+            this.PCT_CANVAS.Size = new System.Drawing.Size(787, 800);
             this.PCT_CANVAS.TabIndex = 1;
             this.PCT_CANVAS.TabStop = false;
             // 
@@ -65,7 +65,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(1633, 853);
+            this.ClientSize = new System.Drawing.Size(884, 929);
             this.Controls.Add(this.PCT_CANVAS);
             this.Controls.Add(this.Score_Label);
             this.Name = "Form1";

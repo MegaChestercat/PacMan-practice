@@ -16,7 +16,7 @@ namespace PacMan
             int xL = int.Parse(lines[0]);
             //int y = int.Parse(lines[1]);
 
-            map = new char[120, 60];
+            map = new char[59, 65];
 
             for (int y = 2; y < lines.Length; y++)
             {
