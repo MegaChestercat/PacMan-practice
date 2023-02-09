@@ -21,7 +21,7 @@ namespace PacMan
         static Map map;
         private Bitmap bmp;
         static Graphics g;
-        static System.Drawing.Brush brushN, brushW, brushC, brushP, brushR;
+        static System.Drawing.Brush negro, amarillo, blanco, rojo, azul;
         Player p = new Player();
         SoundPlayer sgame = new SoundPlayer(Resource1.startSound);
         SoundPlayer sgame2 = new SoundPlayer(Resource1.deathSound);
@@ -60,14 +60,15 @@ namespace PacMan
             bmp = new Bitmap(PCT_CANVAS.Width, PCT_CANVAS.Height);
             PCT_CANVAS.Image = bmp;
             g = Graphics.FromImage(bmp);
-            brushN = new SolidBrush(System.Drawing.Color.FromArgb(0, 0, 0));
-            brushW = new SolidBrush(System.Drawing.Color.FromArgb(0, 0, 255));
-            brushC = new SolidBrush(System.Drawing.Color.FromArgb(239, 184, 16));
-            brushP = new SolidBrush(System.Drawing.Color.FromArgb(248, 243, 43));
-            brushR = new SolidBrush(System.Drawing.Color.FromArgb(255, 0, 0));
+            negro = new SolidBrush(System.Drawing.Color.FromArgb(0, 0, 0));
+            azul = new SolidBrush(System.Drawing.Color.FromArgb(0, 0, 255));
+            amarillo = new SolidBrush(System.Drawing.Color.FromArgb(239, 184, 16));
+            rojo = new SolidBrush(System.Drawing.Color.FromArgb(255, 0, 0));
 
-            for (int x = 0; x < 120; x++)
-                for (int y = 0; y < 60; y++)
+            blanco = new SolidBrush(System.Drawing.Color.FromArgb(255, 255, 255));
+
+            for (int x = 0; x < 59; x++)
+                for (int y = 0; y < 65; y++)
                 {
                     InitRectangle(x, y);
                 }
@@ -83,34 +84,23 @@ namespace PacMan
 
             switch (c)
             {
-                case '0':
-                    g.FillRectangle(brushN, x * 10, y * 10, 10, 10);
+                case 'N':
+                    g.FillRectangle(negro, x * 10, y * 10, 10, 10);
                     break;
-                case 'w':
-                    g.FillRectangle(brushW, x * 10, y * 10, 10, 10);
+                case 'B':
+                    g.FillRectangle(blanco, x * 10, y * 10, 10, 10);
                     break;
-                case 'c':
-                    g.FillRectangle(brushC, x * 10, y * 10, 10, 10);
-                    coins.Add(new PointF(x*10, y*10));
+                case 'A':
+                    g.FillRectangle(amarillo, x * 10, y * 10, 10, 10);
                     break;
-                case 'p':
-                    pacman = new PointF(x * 10, y * 10);
-             
+                case 'a':
+                    g.FillRectangle(azul, x * 10, y * 10, 10, 10);
                     break;
-                case 'r':
-                    ghosts[0] = new PointF(x * 10, y * 10);
-                    break;
-                case 'o':
-                    ghosts[1] = new PointF(x * 10, y * 10);
-                    break;
-                case 'b':
-                    ghosts[2] = new PointF(x * 10, y * 10);
-                    break;
-                case 'q':
-                    ghosts[3] = new PointF(x * 10, y * 10);
+                case 'R':
+                    g.FillRectangle(rojo, x * 10, y * 10, 10, 10);
                     break;
                 default:
-                    g.FillRectangle(brushN, x * 10, y * 10, 10, 10);
+                    g.FillRectangle(negro, x * 10, y * 10, 10, 10);
                     break;
             }
             //g.DrawRectangle(Pens.Gray, x * 10, y * 10, 10, 10);
@@ -128,8 +118,8 @@ namespace PacMan
                 goLeft = true;
                 clear();
                 
-                rotLoc = p.Rotation(pacman, pacPivot, 180);
-                g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
+                //rotLoc = p.Rotation(pacman, pacPivot, 180);
+                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
 
             }
             else if(keyData == Keys.Right && noRight == false)
@@ -139,10 +129,10 @@ namespace PacMan
 
                 goRight = true;
 
-                rotLoc = p.Rotation(pacman, pacPivot, 0); //or change it to 360 or -180
+                //rotLoc = p.Rotation(pacman, pacPivot, 0); //or change it to 360 or -180
 
                 clear();
-                g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
+                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
             }
             else if (keyData == Keys.Up && noUp == false)
             {
@@ -151,10 +141,10 @@ namespace PacMan
 
                 goUp = true;
 
-                rotLoc = p.Rotation(pacman, pacPivot, 90);
+                //rotLoc = p.Rotation(pacman, pacPivot, 90);
 
                 clear();
-                g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
+                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
             }
 
             else if (keyData == Keys.Down && noDown == false)
@@ -164,10 +154,10 @@ namespace PacMan
 
                 goDown = true;
 
-                rotLoc = p.Rotation(pacman, pacPivot, 270);
+                //rotLoc = p.Rotation(pacman, pacPivot, 270);
 
                 clear();
-                g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
+                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -186,12 +176,6 @@ namespace PacMan
 
         private void DrawCharacters()
         {
-            g.DrawImage(Resource1.pacman, pacman.X, pacman.Y);
-            pacPivot = new PointF(pacman.X - 5, pacman.Y - 5);
-
-            g.FillRectangle(brushR, pacman.X, pacman.Y, 10, 10);
-
-
         }
 
         private void checkCollision()
@@ -212,46 +196,15 @@ namespace PacMan
         {
             Score_Label.Text = "Score: " + score;
 
-            if (goRight)
-            {
+          
 
-            }
-
-            if (goLeft)
-            {
-
-            }
-
-            if (goUp)
-            {
-
-            }
-
-            if (goDown)
-            {
-
-            }
-
-            if(goDown && (pacman.Y + 90)  > PCT_CANVAS.Height)
-            {
-                noDown = true;
-                goDown = false;
-
-            }
-
-            if (goUp && pacman.Y  < 1)
-            {
-                noUp = true;
-                goUp = false;
-
-            }
+            
 
         }
 
         private void clear()
         {
-            g.FillRectangle(brushN, pacman.X, pacman.Y, 10, 10);
-            g.FillRectangle(brushN, rotLoc.X, rotLoc.Y, 10, 10);
+           
             PCT_CANVAS.Invalidate();
         }
     }

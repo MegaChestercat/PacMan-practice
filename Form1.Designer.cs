@@ -57,6 +57,7 @@
             this.PCT_CANVAS.Margin = new System.Windows.Forms.Padding(4);
             this.PCT_CANVAS.Name = "PCT_CANVAS";
             this.PCT_CANVAS.Size = new System.Drawing.Size(787, 800);
+            this.PCT_CANVAS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PCT_CANVAS.TabIndex = 1;
             this.PCT_CANVAS.TabStop = false;
             // 
