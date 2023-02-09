@@ -198,7 +198,12 @@ namespace PacMan
                         int newX = pictureBox1.Left - 8;
                         int newY = pictureBox1.Top;
                         if (!IsCharBAt(newX, newY)) pictureBox1.Left -= 8;
-                        else timer1.Enabled = false;
+                        else {
+                            pictureBox1.Left += 4;
+                            currentDirection = "None";
+                        }
+                        if (pictureBox1.Bounds.IntersectsWith(pictureBox3.Bounds)) pictureBox1.Location = pictureBox2.Location;
+                        else if (pictureBox1.Bounds.IntersectsWith(pictureBox5.Bounds)) pictureBox1.Location = pictureBox4.Location;
                     }
                     break;
                 case "right":
@@ -207,7 +212,13 @@ namespace PacMan
                         int newX = pictureBox1.Left + 8;
                         int newY = pictureBox1.Top;
                         if (!IsCharBAt(newX, newY)) pictureBox1.Left += 8;
-                        else timer1.Enabled = false;
+                        else 
+                        {
+                            pictureBox1.Left -= 4;
+                            currentDirection = "None";
+                        }
+                        if (pictureBox1.Bounds.IntersectsWith(pictureBox2.Bounds)) pictureBox1.Location = pictureBox3.Location;
+                        else if(pictureBox1.Bounds.IntersectsWith(pictureBox4.Bounds)) pictureBox1.Location = pictureBox5.Location;
                     }
                     break;
                 case "up":
@@ -216,7 +227,11 @@ namespace PacMan
                         int newX = pictureBox1.Left;
                         int newY = pictureBox1.Top - 8;
                         if (!IsCharBAt(newX, newY)) pictureBox1.Top -= 8;
-                        else timer1.Enabled = false;
+                        else
+                        {
+                            pictureBox1.Top += 4;
+                            currentDirection = "None";
+                        }
                     }
                     break;
                 case "down":
@@ -225,7 +240,11 @@ namespace PacMan
                         int newX = pictureBox1.Left;
                         int newY = pictureBox1.Top + 8;
                         if (!IsCharBAt(newX, newY)) pictureBox1.Top += 8;
-                        else timer1.Enabled = false;
+                        else
+                        {
+                            pictureBox1.Top -= 4;
+                            currentDirection = "None";
+                        }
                     }
                     break;
             }
