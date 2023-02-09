@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 
 namespace PacMan
 {
@@ -22,19 +23,14 @@ namespace PacMan
         private Bitmap bmp;
         static Graphics g;
         static System.Drawing.Brush negro, amarillo, blanco, rojo, azul;
-        Player p = new Player();
+        Player p;
         SoundPlayer sgame = new SoundPlayer(Resource1.startSound);
         SoundPlayer sgame2 = new SoundPlayer(Resource1.deathSound);
-        bool goLeft, goRight, goDown, goUp, noLeft, noRight, noDown, noUp;
         char c;
+        static int verticalMove, horizontalMove;
+        int step;
 
-
-
-        int speed = 8;
         Rect pacmanHitBox;
-        PointF pacman;
-        PointF[] ghosts = new PointF[4];
-        PointF pacPivot, rotLoc;
         public List<PointF> coins = new List<PointF>();
 
 
@@ -60,11 +56,11 @@ namespace PacMan
             bmp = new Bitmap(PCT_CANVAS.Width, PCT_CANVAS.Height);
             PCT_CANVAS.Image = bmp;
             g = Graphics.FromImage(bmp);
+
             negro = new SolidBrush(System.Drawing.Color.FromArgb(0, 0, 0));
             azul = new SolidBrush(System.Drawing.Color.FromArgb(0, 0, 255));
             amarillo = new SolidBrush(System.Drawing.Color.FromArgb(239, 184, 16));
             rojo = new SolidBrush(System.Drawing.Color.FromArgb(255, 0, 0));
-
             blanco = new SolidBrush(System.Drawing.Color.FromArgb(255, 255, 255));
 
             for (int x = 0; x < 59; x++)
@@ -103,67 +99,36 @@ namespace PacMan
                     g.FillRectangle(negro, x * 10, y * 10, 10, 10);
                     break;
             }
-            //g.DrawRectangle(Pens.Gray, x * 10, y * 10, 10, 10);
             PCT_CANVAS.Invalidate();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-
-            if(keyData == Keys.Left && noLeft == false)
+            switch (keyData)
             {
-                goDown = goUp = goRight = false;
-                noRight = noUp = noDown = false;
+                case Keys.Left:
+                    pictureBox1.Left += 20;
+                    break;
 
-                goLeft = true;
-                clear();
-                
-                //rotLoc = p.Rotation(pacman, pacPivot, 180);
-                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
+                case Keys.Right:
 
-            }
-            else if(keyData == Keys.Right && noRight == false)
-            {
-                noLeft = noUp = noDown = false;
-                goDown = goUp = goLeft = false;
+                    break;
 
-                goRight = true;
+                case Keys.Up:
+                    break;
 
-                //rotLoc = p.Rotation(pacman, pacPivot, 0); //or change it to 360 or -180
-
-                clear();
-                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
-            }
-            else if (keyData == Keys.Up && noUp == false)
-            {
-                noLeft = noRight = noDown = false;
-                goDown = goRight = goLeft = false;
-
-                goUp = true;
-
-                //rotLoc = p.Rotation(pacman, pacPivot, 90);
-
-                clear();
-                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
-            }
-
-            else if (keyData == Keys.Down && noDown == false)
-            {
-                noLeft = noRight = noUp = false;
-                goUp = goRight = goLeft = false;
-
-                goDown = true;
-
-                //rotLoc = p.Rotation(pacman, pacPivot, 270);
-
-                clear();
-                //g.DrawImage(Resource1.pacman, rotLoc.X, rotLoc.Y);
+                case Keys.Down:
+                    break;
+                case Keys.Space:
+                    break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+
         }
 
          async private void gameInitialize()
         {
+            step = 8;
             sgame.Play();
           
             await Task.Delay(1000);
@@ -177,6 +142,31 @@ namespace PacMan
         private void DrawCharacters()
         {
             pictureBox1.Image = Resource1.pacman;
+            p = new Player(new PointF(pictureBox1.Location.X +10, pictureBox1.Location.Y + 10), new PointF(pictureBox1.Location.X + 10, pictureBox1.Location.Y - 80));
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    pictureBox1.Left += 3;
+                    break;
+
+                case Keys.Right:
+                    pictureBox1.Left += 3;
+                    break;
+
+                case Keys.Up:
+                    pictureBox1.Top -= 3;
+                    break;
+
+                case Keys.Down:
+                    pictureBox1.Top += 3;
+                    break;
+                case Keys.Space:
+                    break;
+            }
         }
 
         private void checkCollision()
@@ -203,10 +193,39 @@ namespace PacMan
 
         }
 
-        private void clear()
+        private void UpdateVertPosition()
         {
-           
-            PCT_CANVAS.Invalidate();
+            float f = (float)verticalMove / 50;
+            p.Pos = Util.Instance.NextStep(p.Pos, p.LookAt, f);// update position of entity
+            p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -f);// update position of entity
+
+            if (Util.Instance.distance(p.Pos, p.LookAt) < 15) // it compensates the float error
+            {
+                if (f > 0)
+                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -f);
+                else
+                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, f);
+            }
+            p.UpdateRotations();
+            verticalMove = 0;
+        }
+
+        
+        private void UpdateHorPosition()
+        {
+            float h = (float)horizontalMove / 50;
+            p.Pos = Util.Instance.NextStep(p.Pos, p.LookAt, h);// update position of entity
+            p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -h);// update position of entity
+
+            if (Util.Instance.distance(p.Pos, p.LookAt) < 15) // it compensates the float error
+            {
+                if (h > 0)
+                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -h);
+                else
+                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, h);
+            }
+            p.UpdateRotations();
+            horizontalMove = 0;
         }
     }
 }

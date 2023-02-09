@@ -8,22 +8,58 @@ namespace PacMan
 {
     public class Player
     {
+        public PointF Pos, LookAt;//main lookAt
+        public List<PointF> looks;
+        public List<float> angles;
+        private float[] angleR, angleL;
+        private PointF[] looksR, looksL;
 
-        public PointF Rotation(PointF a, PointF b, double angle)
+        public Player(PointF pos, PointF lookAt)
         {
-            b.X -= a.X;
-            b.Y -= a.Y;
+            this.Pos = pos;
+            this.LookAt = lookAt;
 
-            PointF c = new PointF();
-            angle = angle / 57.2958f;
+            int tot = 150;
+            looksR = new PointF[tot];
+            looksL = new PointF[tot];
 
-            c.X = (float)((b.X * Math.Cos(angle)) - (b.Y * Math.Sin(angle)));
-            c.Y = (float)((b.X * Math.Sin(angle)) + (b.Y * Math.Cos(angle)));
+            angleR = new float[tot];
+            angleL = new float[tot];
 
-            c.X += a.X;
-            c.Y += a.Y;
+            looks = new List<PointF>();
 
-            return c;
+            angles = new List<float>();
+            UpdateRotations();
+        }
+
+        public void UpdateRotations()
+        {
+            float val;
+            val = .1f;
+            looks.Clear();
+            looksR[0] = Util.Instance.Rotate(Pos, LookAt, val);
+            //angleR[0] = (float)Math.Cos((0) / 57.2958f) ;
+
+            angleR[0] = 0;
+            for (int i = 1; i < looksR.Length; i++)
+            {
+                looksR[i] = Util.Instance.Rotate(Pos, looksR[i - 1], val);
+                //angleR[i] = (float)Math.Cos((i * val) / 57.2958f);
+                angleR[i] = (i * val);
+            }
+
+            looksL[looksL.Length - 1] = Util.Instance.Rotate(Pos, LookAt, -val);
+            angleL[0] = looksL.Length * val;
+            for (int i = looksL.Length - 1; i > 0; i--)
+            {
+                looksL[i - 1] = Util.Instance.Rotate(Pos, looksL[i], -val);
+                //angleL[looksL.Length - i] = (float)Math.Cos((i * val) / 57.2958f);
+                angleL[looksL.Length - i] = (i * val);
+            }
+            angles.AddRange(angleL.ToArray());
+            angles.AddRange(angleR.ToArray());
+            looks.AddRange(looksL);
+            looks.AddRange(looksR);
         }
     }
 }
