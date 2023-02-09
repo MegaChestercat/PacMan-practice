@@ -48,7 +48,7 @@
             this.Score_Label.AutoSize = true;
             this.Score_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Score_Label.ForeColor = System.Drawing.Color.White;
-            this.Score_Label.Location = new System.Drawing.Point(387, 37);
+            this.Score_Label.Location = new System.Drawing.Point(12, 804);
             this.Score_Label.Name = "Score_Label";
             this.Score_Label.Size = new System.Drawing.Size(107, 36);
             this.Score_Label.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             // PCT_CANVAS
             // 
-            this.PCT_CANVAS.Location = new System.Drawing.Point(44, 104);
+            this.PCT_CANVAS.Location = new System.Drawing.Point(0, 0);
             this.PCT_CANVAS.Margin = new System.Windows.Forms.Padding(4);
             this.PCT_CANVAS.Name = "PCT_CANVAS";
             this.PCT_CANVAS.Size = new System.Drawing.Size(787, 800);
@@ -66,7 +66,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
-            this.pictureBox1.Location = new System.Drawing.Point(427, 520);
+            this.pictureBox1.Location = new System.Drawing.Point(374, 416);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(20, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

@@ -85,6 +85,7 @@ namespace PacMan
                     break;
                 case 'A':
                     g.FillRectangle(amarillo, x * 10, y * 10, 10, 10);
+                    coins.Add(new PointF(x * 10, y * 10));
                     break;
                 case 'a':
                     g.FillRectangle(azul, x * 10, y * 10, 10, 10);
@@ -119,6 +120,23 @@ namespace PacMan
             pictureBox1.Image = Resource1.pacman_right;
         }
 
+        private void CheckForCoins()
+        {
+            PointF currentPos = new PointF(pictureBox1.Left + (pictureBox1.Width / 2), pictureBox1.Top + (pictureBox1.Height / 2));
+
+            for (int i = coins.Count - 1; i >= 0; i--)
+            {
+                PointF coinPos = coins[i];
+                if (Math.Abs(currentPos.X - coinPos.X) < (pictureBox1.Width / 2) && Math.Abs(currentPos.Y - coinPos.Y) < (pictureBox1.Height / 2))
+                {
+                    g.FillRectangle(negro, (int)coinPos.X, (int)coinPos.Y, 10, 10);
+                    coins.RemoveAt(i);
+                    score++;
+                    Score_Label.Text = "Score: " + score;
+                }
+            }
+        }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -147,12 +165,13 @@ namespace PacMan
             }
         }
 
+        /*
         private void pacManMovement_Tick(object sender, EventArgs e)
         {
             switch (currentDirection)
             {
                 case "left":
-                    if((pictureBox1.Left - 8) > 0) pictureBox1.Left -= 8;
+                    if ((pictureBox1.Left - 8) > 0) pictureBox1.Left -= 8;
                     break;
                 case "right":
                     if ((pictureBox1.Left + 8) < (this.Width - pictureBox1.Width)) pictureBox1.Left += 8;
@@ -164,6 +183,60 @@ namespace PacMan
                     if ((pictureBox1.Top + 8) < (this.Height - pictureBox1.Height)) pictureBox1.Top += 8;
                     break;
             }
+        }*/
+
+        private void pacManMovement_Tick(object sender, EventArgs e)
+        {
+            CheckForCoins();
+
+
+            switch (currentDirection)
+            {
+                case "left":
+                    if (pictureBox1.Left - 8 > 0)
+                    {
+                        int newX = pictureBox1.Left - 8;
+                        int newY = pictureBox1.Top;
+                        if (!IsCharBAt(newX, newY)) pictureBox1.Left -= 8;
+                        else timer1.Enabled = false;
+                    }
+                    break;
+                case "right":
+                    if (pictureBox1.Left + 8 < (this.Width - pictureBox1.Width))
+                    {
+                        int newX = pictureBox1.Left + 8;
+                        int newY = pictureBox1.Top;
+                        if (!IsCharBAt(newX, newY)) pictureBox1.Left += 8;
+                        else timer1.Enabled = false;
+                    }
+                    break;
+                case "up":
+                    if (pictureBox1.Top - 8 > 0)
+                    {
+                        int newX = pictureBox1.Left;
+                        int newY = pictureBox1.Top - 8;
+                        if (!IsCharBAt(newX, newY)) pictureBox1.Top -= 8;
+                        else timer1.Enabled = false;
+                    }
+                    break;
+                case "down":
+                    if (pictureBox1.Top + 8 < (this.Height - pictureBox1.Height))
+                    {
+                        int newX = pictureBox1.Left;
+                        int newY = pictureBox1.Top + 8;
+                        if (!IsCharBAt(newX, newY)) pictureBox1.Top += 8;
+                        else timer1.Enabled = false;
+                    }
+                    break;
+            }
+        }
+
+        private bool IsCharBAt(int x, int y)
+        {
+            int mapX = x / 10;
+            int mapY = y / 10;
+
+            return map.map[mapX, mapY] == 'B';
         }
 
         private void gameOver(string message)
@@ -173,15 +246,12 @@ namespace PacMan
             MessageBox.Show(message, "PacMan UDLAP");
         }
 
-
-        private void checkCollision()
-        {
-
-        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             Score_Label.Text = "Score: " + score;
         }
+
+        
 
     }
 }
