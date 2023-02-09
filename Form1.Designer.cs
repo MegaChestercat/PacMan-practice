@@ -32,7 +32,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Score_Label = new System.Windows.Forms.Label();
             this.PCT_CANVAS = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PCT_CANVAS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -57,9 +59,17 @@
             this.PCT_CANVAS.Margin = new System.Windows.Forms.Padding(4);
             this.PCT_CANVAS.Name = "PCT_CANVAS";
             this.PCT_CANVAS.Size = new System.Drawing.Size(787, 800);
-            this.PCT_CANVAS.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PCT_CANVAS.TabIndex = 1;
             this.PCT_CANVAS.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(427, 520);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
@@ -67,11 +77,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(884, 929);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.PCT_CANVAS);
             this.Controls.Add(this.Score_Label);
             this.Name = "Form1";
             this.Text = "PacMan";
             ((System.ComponentModel.ISupportInitialize)(this.PCT_CANVAS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,6 +94,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label Score_Label;
         private System.Windows.Forms.PictureBox PCT_CANVAS;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

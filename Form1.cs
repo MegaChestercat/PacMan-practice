@@ -176,6 +176,7 @@ namespace PacMan
 
         private void DrawCharacters()
         {
+            pictureBox1.Image = Resource1.pacman;
         }
 
         private void checkCollision()
