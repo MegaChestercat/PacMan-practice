@@ -23,14 +23,9 @@ namespace PacMan
         private Bitmap bmp;
         static Graphics g;
         static System.Drawing.Brush negro, amarillo, blanco, rojo, azul;
-        Player p;
-        SoundPlayer sgame = new SoundPlayer(Resource1.startSound);
-        SoundPlayer sgame2 = new SoundPlayer(Resource1.deathSound);
+        Sound sounds = new Sound();
         char c;
-        static int verticalMove, horizontalMove;
-        int step;
 
-        Rect pacmanHitBox;
         public List<PointF> coins = new List<PointF>();
 
 
@@ -104,47 +99,25 @@ namespace PacMan
             PCT_CANVAS.Invalidate();
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            switch (keyData)
-            {
-                case Keys.Left:
-                    pictureBox1.Left += 20;
-                    break;
-
-                case Keys.Right:
-
-                    break;
-
-                case Keys.Up:
-                    break;
-
-                case Keys.Down:
-                    break;
-                case Keys.Space:
-                    break;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-
-        }
-
          async private void gameInitialize()
         {
             step = 8;
-            sgame.Play();
+            sounds.playStartSound();
           
             await Task.Delay(1000);
 
             timer1.Enabled = true;
             currentGhostStep = ghostMoveStep;
 
-            DrawCharacters(); 
+            DrawCharacters();
+            await Task.Delay(5000);
+            sounds.playEatingSound();
+
         }
 
         private void DrawCharacters()
         {
-            pictureBox1.Image = Resource1.pacman;
-            p = new Player(new PointF(pictureBox1.Location.X +10, pictureBox1.Location.Y + 10), new PointF(pictureBox1.Location.X + 10, pictureBox1.Location.Y - 80));
+            pictureBox1.Image = Resource1.pacman_right;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -152,18 +125,22 @@ namespace PacMan
             switch (e.KeyCode)
             {
                 case Keys.Left:
+                    pictureBox1.Image = Resource1.pacman_left;
                     currentDirection = "left";
                     break;
 
                 case Keys.Right:
+                    pictureBox1.Image = Resource1.pacman_right;
                     currentDirection = "right";
                     break;
 
                 case Keys.Up:
+                    pictureBox1.Image = Resource1.pacman_up;
                     currentDirection = "up";
                     break;
 
                 case Keys.Down:
+                    pictureBox1.Image = Resource1.pacman_down;
                     currentDirection = "down";
                     break;
                 case Keys.Space:
@@ -176,77 +153,31 @@ namespace PacMan
             switch (currentDirection)
             {
                 case "left":
-                    pictureBox1.Left -= 3;
+                    if((pictureBox1.Left - 8) > 0) pictureBox1.Left -= 8;
                     break;
                 case "right":
-                    pictureBox1.Left += 3;
+                    if ((pictureBox1.Left + 8) < (this.Width - pictureBox1.Width)) pictureBox1.Left += 8;
                     break;
                 case "up":
-                    pictureBox1.Top -= 3;
+                    if ((pictureBox1.Top - 8) > 0) pictureBox1.Top -= 8;
                     break;
                 case "down":
-                    pictureBox1.Top += 3;
+                    if ((pictureBox1.Top + 8) < (this.Height - pictureBox1.Height)) pictureBox1.Top += 8;
                     break;
             }
-        }
-
-        private void checkCollision()
-        {
-
         }
 
         private void gameOver(string message)
         {
             timer1.Enabled = false;
-            sgame2.Play();
+            sounds.playDeathSound();
             MessageBox.Show(message, "PacMan UDLAP");
-           
-         
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             Score_Label.Text = "Score: " + score;
-
-          
-
-            
-
         }
 
-        private void UpdateVertPosition()
-        {
-            float f = (float)verticalMove / 50;
-            p.Pos = Util.Instance.NextStep(p.Pos, p.LookAt, f);// update position of entity
-            p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -f);// update position of entity
-
-            if (Util.Instance.distance(p.Pos, p.LookAt) < 15) // it compensates the float error
-            {
-                if (f > 0)
-                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -f);
-                else
-                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, f);
-            }
-            p.UpdateRotations();
-            verticalMove = 0;
-        }
-
-        
-        private void UpdateHorPosition()
-        {
-            float h = (float)horizontalMove / 50;
-            p.Pos = Util.Instance.NextStep(p.Pos, p.LookAt, h);// update position of entity
-            p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -h);// update position of entity
-
-            if (Util.Instance.distance(p.Pos, p.LookAt) < 15) // it compensates the float error
-            {
-                if (h > 0)
-                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, -h);
-                else
-                    p.LookAt = Util.Instance.NextStep(p.LookAt, p.Pos, h);
-            }
-            p.UpdateRotations();
-            horizontalMove = 0;
-        }
     }
 }

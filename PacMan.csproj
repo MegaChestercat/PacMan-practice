@@ -121,5 +121,20 @@
   <ItemGroup>
     <None Include="src\startSound.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\pacman_down.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\pacman_left.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\pacman_right.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\pacman_up.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\eatingSound.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
