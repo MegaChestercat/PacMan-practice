@@ -48,6 +48,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Level2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Level2.Designer.cs">
+      <DependentUpon>Level2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Level3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Level3.Designer.cs">
+      <DependentUpon>Level3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +75,12 @@
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
     <Compile Include="Sound.cs" />
+    <EmbeddedResource Include="Level2.resx">
+      <DependentUpon>Level2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Level3.resx">
+      <DependentUpon>Level3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +151,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\eatingSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\orange.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\blue.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\pink.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\red.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\flawless_sound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\win_sound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="WiimoteLib\WiimoteLib.csproj">
+      <Project>{37a555df-7012-4b99-8a47-1c922a361e52}</Project>
+      <Name>WiimoteLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

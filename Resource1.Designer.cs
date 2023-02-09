@@ -61,6 +61,16 @@ namespace PacMan {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap blue {
+            get {
+                object obj = ResourceManager.GetObject("blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream deathSound {
@@ -75,6 +85,15 @@ namespace PacMan {
         internal static System.IO.UnmanagedMemoryStream eatingSound {
             get {
                 return ResourceManager.GetStream("eatingSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream flawless_sound {
+            get {
+                return ResourceManager.GetStream("flawless_sound", resourceCulture);
             }
         }
         
@@ -154,6 +173,15 @@ namespace PacMan {
         internal static System.IO.UnmanagedMemoryStream startSound {
             get {
                 return ResourceManager.GetStream("startSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream win_sound {
+            get {
+                return ResourceManager.GetStream("win_sound", resourceCulture);
             }
         }
     }

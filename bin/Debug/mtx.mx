@@ -24,9 +24,9 @@ B,B,B,N,A,N,B,B,B,N,A,N,B,B,B,B,B,B,B,N,N,N,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,N,N,N,
 N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
 N,N,N,N,A,N,A,N,A,N,A,N,A,N,A,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,A,N,A,N,A,N,A,N,A,N,A,N,N,N,N
 N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N,N
-B,B,B,N,A,N,B,B,B,B,B,B,B,N,A,N,B,B,B,N,N,N,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,N,N,N,B,B,B,N,A,N,B,B,B,B,B,B,B,N,A,N,B,B,B
-B,a,B,N,N,N,B,a,a,a,a,a,B,N,N,N,B,a,B,N,N,N,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,N,N,N,B,a,B,N,N,N,B,a,a,a,a,a,B,N,N,N,B,a,B
-B,a,B,N,A,N,B,a,a,a,a,a,B,N,A,N,B,a,B,N,N,N,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,N,N,N,B,a,B,N,A,N,B,a,a,a,a,a,B,N,A,N,B,a,B
+B,B,B,N,A,N,B,B,B,B,B,B,B,N,A,N,B,B,B,N,N,N,B,B,B,B,B,B,N,N,N,B,B,B,B,B,B,N,N,N,B,B,B,N,A,N,B,B,B,B,B,B,B,N,A,N,B,B,B
+B,a,B,N,N,N,B,a,a,a,a,a,B,N,N,N,B,a,B,N,N,N,B,B,B,B,B,B,N,N,N,B,B,B,B,B,B,N,N,N,B,a,B,N,N,N,B,a,a,a,a,a,B,N,N,N,B,a,B
+B,a,B,N,A,N,B,a,a,a,a,a,B,N,A,N,B,a,B,N,N,N,B,B,B,B,B,B,N,N,N,B,B,B,B,B,B,N,N,N,B,a,B,N,A,N,B,a,a,a,a,a,B,N,A,N,B,a,B
 B,a,B,N,N,N,B,a,a,a,a,a,B,N,N,N,B,a,B,N,N,N,B,B,B,F,F,F,F,F,F,F,F,F,B,B,B,N,N,N,B,a,B,N,N,N,B,a,a,a,a,a,B,N,N,N,B,a,B
 B,a,B,N,A,N,B,B,B,B,B,B,B,N,A,N,B,a,B,N,N,N,B,B,B,F,F,F,F,F,F,F,F,F,B,B,B,N,N,N,B,a,B,N,A,N,B,B,B,B,B,B,B,N,A,N,B,a,B
 B,a,B,N,N,N,N,N,N,N,N,N,N,N,N,N,B,a,B,N,N,N,B,B,B,F,F,F,F,F,F,F,F,F,B,B,B,N,N,N,B,a,B,N,N,N,N,N,N,N,N,N,N,N,N,N,B,a,B

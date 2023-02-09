@@ -17,7 +17,7 @@ using WiimoteLib;
 
 namespace PacMan
 {
-    public partial class Form1 : Form
+    public partial class Level3 : Form
     {
 
         static Map map;
@@ -28,8 +28,6 @@ namespace PacMan
         char c;
 
         public List<System.Drawing.PointF> coins = new List<System.Drawing.PointF>();
-
-
         int score = 0;
         int lives = 3;
         System.Drawing.Point spawnPoint;
@@ -39,7 +37,7 @@ namespace PacMan
         Wiimote wm = new Wiimote();
 
 
-        public Form1()
+        public Level3()
         {
             InitializeComponent();
             
@@ -50,7 +48,7 @@ namespace PacMan
         private void Init()
         {
 
-            map = new Map("mtx.mx");
+            map = new Map("mtx3.mx");
             bmp = new Bitmap(PCT_CANVAS.Width, PCT_CANVAS.Height);
             PCT_CANVAS.Image = bmp;
             g = Graphics.FromImage(bmp);
@@ -70,6 +68,8 @@ namespace PacMan
             g.DrawRectangle(Pens.Gray, 0, 0, bmp.Width - 1, bmp.Height - 1);
 
             spawnPoint = pictureBox1.Location;
+
+
         }
 
         private void InitRectangle(int x, int y)
@@ -170,7 +170,7 @@ namespace PacMan
 
         private void wm_WiimoteChanged(object sender, WiimoteChangedEventArgs args)
         {
-            if(wm.WiimoteState.ButtonState.Right == true)
+            if (wm.WiimoteState.ButtonState.Right == true)
             {
                 pictureBox1.Image = Resource1.pacman_up;
                 currentDirection = "up";
@@ -213,7 +213,6 @@ namespace PacMan
                             currentDirection = "None";
                         }
                         if (pictureBox1.Bounds.IntersectsWith(pictureBox3.Bounds)) pictureBox1.Location = pictureBox2.Location;
-                        else if (pictureBox1.Bounds.IntersectsWith(pictureBox5.Bounds)) pictureBox1.Location = pictureBox4.Location;
                         ghostCollision();
                     }
                     break;
@@ -229,7 +228,6 @@ namespace PacMan
                             currentDirection = "None";
                         }
                         if (pictureBox1.Bounds.IntersectsWith(pictureBox2.Bounds)) pictureBox1.Location = pictureBox3.Location;
-                        else if(pictureBox1.Bounds.IntersectsWith(pictureBox4.Bounds)) pictureBox1.Location = pictureBox5.Location;
                         ghostCollision();
                     }
                     break;
@@ -265,12 +263,6 @@ namespace PacMan
             
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            wm.WiimoteChanged += wm_WiimoteChanged;
-            wm.Connect();
-        }
-
         private void ghostCollision()
         {
             if (pictureBox1.Bounds.IntersectsWith(redGhost.Bounds) || pictureBox1.Bounds.IntersectsWith(blueGhost.Bounds) || pictureBox1.Bounds.IntersectsWith(pinkGhost.Bounds) || pictureBox1.Bounds.IntersectsWith(orangeGhost.Bounds))
@@ -282,6 +274,12 @@ namespace PacMan
                 pictureBox1.Visible = true;
                 sounds.playEatingSound();
             }
+        }
+
+        private void Level3_Load(object sender, EventArgs e)
+        {
+            wm.WiimoteChanged += wm_WiimoteChanged;
+            wm.Connect();
         }
 
         private bool IsCharBAt(int x, int y)
@@ -311,13 +309,12 @@ namespace PacMan
                 sounds.win();
                 MessageBox.Show("Congratulations! You passed this level.", "You Win");
             }
-
-            Level2 l2 = new Level2();
-            l2.Show();
-            this.Close();
         }
 
-        
+        private void Level3_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
 
     }
 }
