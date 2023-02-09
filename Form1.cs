@@ -101,7 +101,6 @@ namespace PacMan
 
          async private void gameInitialize()
         {
-            step = 8;
             sounds.playStartSound();
           
             await Task.Delay(1000);
@@ -174,6 +173,11 @@ namespace PacMan
             MessageBox.Show(message, "PacMan UDLAP");
         }
 
+
+        private void checkCollision()
+        {
+
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             Score_Label.Text = "Score: " + score;
