@@ -39,7 +39,9 @@ namespace PacMan
         int currentGhostStep;
         int score = 0;
 
-        
+
+        String currentDirection = "None";
+
 
         public Form1()
         {
@@ -150,21 +152,40 @@ namespace PacMan
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    pictureBox1.Left += 3;
+                    currentDirection = "left";
                     break;
 
                 case Keys.Right:
-                    pictureBox1.Left += 3;
+                    currentDirection = "right";
                     break;
 
                 case Keys.Up:
-                    pictureBox1.Top -= 3;
+                    currentDirection = "up";
                     break;
 
                 case Keys.Down:
-                    pictureBox1.Top += 3;
+                    currentDirection = "down";
                     break;
                 case Keys.Space:
+                    break;
+            }
+        }
+
+        private void pacManMovement_Tick(object sender, EventArgs e)
+        {
+            switch (currentDirection)
+            {
+                case "left":
+                    pictureBox1.Left -= 3;
+                    break;
+                case "right":
+                    pictureBox1.Left += 3;
+                    break;
+                case "up":
+                    pictureBox1.Top -= 3;
+                    break;
+                case "down":
+                    pictureBox1.Top += 3;
                     break;
             }
         }

@@ -33,6 +33,7 @@
             this.Score_Label = new System.Windows.Forms.Label();
             this.PCT_CANVAS = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pacManMovement = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PCT_CANVAS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +73,11 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // pacManMovement
+            // 
+            this.pacManMovement.Enabled = true;
+            this.pacManMovement.Tick += new System.EventHandler(this.pacManMovement_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -97,6 +103,7 @@
         private System.Windows.Forms.Label Score_Label;
         private System.Windows.Forms.PictureBox PCT_CANVAS;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer pacManMovement;
     }
 }
 
